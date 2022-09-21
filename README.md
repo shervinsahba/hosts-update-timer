@@ -4,6 +4,8 @@ This installs a systemd timer and service, `hosts-update`, that periodically upd
 
 By default, the timer runs weekly and provides the unified+fakenews hosts. The files are copied to `/etc/systemd/system`. If you'd like to set a different update period or include some of StevenBlack's other lists, edit the timer and service files prior to running setup.
 
+## Install:
+Requires: `docker`.
 ```
 git clone https://github.com/shervinsahba/hosts-update-timer
 cd hosts-update-timer && ./setup
