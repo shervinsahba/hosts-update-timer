@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# check for docker, which is required by hosts-update.service
+if ! [ -x "$(command -v docker)" ]; then
+    echo 'Error: docker is not installed.' >&2
+    exit 1
+fi
+
+# if not superuser, rerun script as sudo and exit
+if [[ $EUID -ne 0 ]]; then
+    sudo "$0"
+    exit $?
+fi
+
+cp hosts-update.service hosts-update.timer /etc/systemd/system
+systemctl daemon-reload
+systemctl enable --now hosts-update.timer
+systemctl status hosts-update.timer
