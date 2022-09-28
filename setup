@@ -2,8 +2,11 @@
 
 # check for docker, which is required by hosts-update.service
 if ! [ -x "$(command -v docker)" ]; then
-    echo 'Error: docker is not installed.' >&2
+    echo "Error: docker needs to be installed." >&2
     exit 1
+elif ! [ $(systemctl is-active docker) == "active" ]; then
+	echo "Error: enable the systemd docker daemon to continue."
+	exit 2
 fi
 
 # if not superuser, rerun script as sudo and exit
