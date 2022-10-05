@@ -5,3 +5,6 @@ ConditionACPower=true
 [Service]
 Type=oneshot
 ExecStart=docker run --pull always --rm -it -v /etc/hosts:/etc/hosts ghcr.io/stevenblack/hosts:latest updateHostsFile.py --auto --replace --extensions fakenews
+
+[Install]
+WantedBy=multi-user.target
