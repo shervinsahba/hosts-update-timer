@@ -4,5 +4,4 @@ ConditionACPower=true
 
 [Service]
 Type=oneshot
-ExecStart=docker run --pull always --rm -v /etc/hosts:/etc/hosts ghcr.io/stevenblack/hosts:latest updateHostsFile.py --auto --replace --extensions fakenews
-
+ExecStart=/bin/bash -c "docker rmi ghcr.io/stevenblack/hosts; docker run --pull always --rm -v /etc/hosts:/etc/hosts ghcr.io/stevenblack/hosts:latest updateHostsFile.py --auto --replace --extensions fakenews"
